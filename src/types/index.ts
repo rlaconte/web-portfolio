@@ -8,7 +8,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  category: "Languages" | "Frameworks" | "Tools" | "Databases";
+  category: "Languages" | "Backend & Infra" | "AI & Tooling" | "DevOps";
 }
 
 export interface SocialLink {

@@ -6,28 +6,34 @@ export const skills: Skill[] = [
   { name: "Go", category: "Languages" },
   { name: "Python", category: "Languages" },
   { name: "SQL", category: "Languages" },
+  { name: "Bash", category: "Languages" },
 
-  // Frameworks
-  { name: "Next.js", category: "Frameworks" },
-  { name: "React", category: "Frameworks" },
-  { name: "Node.js", category: "Frameworks" },
-  { name: "Express", category: "Frameworks" },
+  // Backend & Infra
+  { name: "Node.js", category: "Backend & Infra" },
+  { name: "Express", category: "Backend & Infra" },
+  { name: "PostgreSQL", category: "Backend & Infra" },
+  { name: "Redis", category: "Backend & Infra" },
+  { name: "gRPC", category: "Backend & Infra" },
+  { name: "Prisma", category: "Backend & Infra" },
 
-  // Databases
-  { name: "PostgreSQL", category: "Databases" },
-  { name: "Redis", category: "Databases" },
-  { name: "SQLite", category: "Databases" },
+  // AI & Tooling
+  { name: "Claude API", category: "AI & Tooling" },
+  { name: "OpenAI API", category: "AI & Tooling" },
+  { name: "LangChain", category: "AI & Tooling" },
+  { name: "RAG", category: "AI & Tooling" },
+  { name: "Prompt Engineering", category: "AI & Tooling" },
 
-  // Tools
-  { name: "Docker", category: "Tools" },
-  { name: "Git", category: "Tools" },
-  { name: "Vercel", category: "Tools" },
-  { name: "GitHub Actions", category: "Tools" },
+  // DevOps
+  { name: "Docker", category: "DevOps" },
+  { name: "Git", category: "DevOps" },
+  { name: "GitHub Actions", category: "DevOps" },
+  { name: "Vercel", category: "DevOps" },
+  { name: "Terraform", category: "DevOps" },
 ];
 
 export const skillCategories = [
   "Languages",
-  "Frameworks",
-  "Databases",
-  "Tools",
+  "Backend & Infra",
+  "AI & Tooling",
+  "DevOps",
 ] as const;

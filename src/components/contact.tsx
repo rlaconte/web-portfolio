@@ -1,4 +1,5 @@
 import SectionWrapper from "@/components/section-wrapper";
+import ScrollReveal from "@/components/scroll-reveal";
 import { socialLinks } from "@/data/social-links";
 import { Mail } from "lucide-react";
 
@@ -28,43 +29,54 @@ export default function Contact() {
   const email = socialLinks.find((l) => l.icon === "mail");
 
   return (
-    <SectionWrapper id="contact" title="Contact">
-      <div className="max-w-xl">
-        <p className="text-gray-500 mb-8 leading-relaxed">
-          I&apos;m open to new opportunities. Whether you have a project in mind,
-          want to collaborate, or just want to say hi — reach out.
-        </p>
+    <SectionWrapper id="contact" sectionNumber="03">
+      <ScrollReveal>
+        <div className="max-w-2xl">
+          {/* Big serif heading */}
+          <h2 className="font-[var(--font-serif)] text-4xl sm:text-5xl text-stone-900 dark:text-stone-100 leading-tight mb-6">
+            Let&apos;s build<br />
+            <span className="text-emerald-600 dark:text-emerald-400">something.</span>
+          </h2>
 
-        {email && (
-          <a
-            href={email.url}
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors mb-8"
-          >
-            <Mail size={16} />
-            Say hello
-          </a>
-        )}
+          <p className="text-stone-500 dark:text-stone-400 mb-8 leading-relaxed max-w-md">
+            Open to new opportunities — whether it&apos;s a gnarly backend
+            challenge, an AI-augmented system, or just a good conversation
+            about distributed systems at 2am.
+          </p>
 
-        <div className="flex items-center gap-4">
-          {socialLinks
-            .filter((l) => l.icon !== "mail")
-            .map((link) => {
-              const Icon = iconComponents[link.icon];
-              return (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.platform}
-                  className="text-gray-400 hover:text-gray-900 transition-colors"
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
+          <div className="flex items-center gap-4">
+            {email && (
+              <a
+                href={email.url}
+                className="inline-flex items-center gap-2 bg-emerald-600 dark:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-colors"
+              >
+                <Mail size={15} />
+                Say hello
+              </a>
+            )}
+
+            <div className="flex items-center gap-3">
+              {socialLinks
+                .filter((l) => l.icon !== "mail")
+                .map((link) => {
+                  const Icon = iconComponents[link.icon];
+                  return (
+                    <a
+                      key={link.platform}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.platform}
+                      className="text-stone-400 dark:text-stone-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                    >
+                      <Icon size={20} />
+                    </a>
+                  );
+                })}
+            </div>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </SectionWrapper>
   );
 }

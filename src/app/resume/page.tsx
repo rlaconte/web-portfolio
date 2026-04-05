@@ -5,53 +5,60 @@ import { experience, education } from "@/data/resume";
 
 export const metadata: Metadata = {
   title: "Resume — Your Name",
-  description: "Work experience and education of Your Name, software engineer.",
+  description: "Work experience and education of Your Name, backend engineer.",
 };
 
 export default function ResumePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
-      <div className="flex items-center justify-between mb-12">
+      {/* Nav row */}
+      <div className="flex items-center justify-between mb-14">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="font-[var(--font-mono)] inline-flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 tracking-wider uppercase transition-colors"
         >
-          <ArrowLeft size={16} />
-          Back home
+          <ArrowLeft size={14} />
+          Back
         </Link>
         <a
           href="/resume.pdf"
-          className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-gray-400 hover:text-gray-900 transition-colors"
+          className="font-[var(--font-mono)] inline-flex items-center gap-2 border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 px-4 py-2 rounded-lg text-xs tracking-wider uppercase hover:border-emerald-500 hover:text-emerald-600 dark:hover:border-emerald-500 dark:hover:text-emerald-400 transition-colors"
         >
-          <Download size={14} />
-          Download PDF
+          <Download size={13} />
+          PDF
         </a>
       </div>
 
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">
+      {/* Name & title */}
+      <h1 className="font-[var(--font-serif)] text-4xl text-stone-900 dark:text-stone-100 mb-1">
         Your Name
       </h1>
-      <p className="text-gray-500 mb-12">Software Engineer</p>
+      <p className="font-[var(--font-mono)] text-xs text-emerald-600 dark:text-emerald-400 tracking-widest uppercase mb-14">
+        Backend Engineer
+      </p>
 
       {/* Experience */}
-      <section className="mb-12">
-        <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-6">
+      <section className="mb-14">
+        <h2 className="font-[var(--font-mono)] text-xs text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-8">
           Experience
         </h2>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-10">
           {experience.map((job) => (
             <div key={`${job.company}-${job.role}`}>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
                 <div>
-                  <span className="font-semibold text-gray-900">{job.role}</span>
-                  <span className="text-gray-500"> · {job.company}</span>
+                  <span className="font-semibold text-stone-900 dark:text-stone-100">{job.role}</span>
+                  <span className="text-stone-400 dark:text-stone-500 mx-2">·</span>
+                  <span className="text-stone-500 dark:text-stone-400">{job.company}</span>
                 </div>
-                <span className="text-sm text-gray-400 shrink-0">{job.period}</span>
+                <span className="font-[var(--font-mono)] text-xs text-stone-400 dark:text-stone-500 shrink-0">
+                  {job.period}
+                </span>
               </div>
-              <ul className="flex flex-col gap-1.5">
+              <ul className="flex flex-col gap-2">
                 {job.bullets.map((bullet, i) => (
-                  <li key={i} className="text-sm text-gray-600 flex gap-2">
-                    <span className="text-gray-300 mt-0.5">—</span>
+                  <li key={i} className="text-sm text-stone-600 dark:text-stone-400 flex gap-3">
+                    <span className="text-emerald-500 mt-0.5 shrink-0">—</span>
                     {bullet}
                   </li>
                 ))}
@@ -63,20 +70,23 @@ export default function ResumePage() {
 
       {/* Education */}
       <section>
-        <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-6">
+        <h2 className="font-[var(--font-mono)] text-xs text-stone-400 dark:text-stone-500 uppercase tracking-widest mb-8">
           Education
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5">
           {education.map((edu) => (
             <div
               key={edu.institution}
-              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1"
             >
               <div>
-                <span className="font-semibold text-gray-900">{edu.degree}</span>
-                <span className="text-gray-500"> · {edu.institution}</span>
+                <span className="font-semibold text-stone-900 dark:text-stone-100">{edu.degree}</span>
+                <span className="text-stone-400 dark:text-stone-500 mx-2">·</span>
+                <span className="text-stone-500 dark:text-stone-400">{edu.institution}</span>
               </div>
-              <span className="text-sm text-gray-400 shrink-0">{edu.period}</span>
+              <span className="font-[var(--font-mono)] text-xs text-stone-400 dark:text-stone-500 shrink-0">
+                {edu.period}
+              </span>
             </div>
           ))}
         </div>

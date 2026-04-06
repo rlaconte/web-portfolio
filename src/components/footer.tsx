@@ -19,9 +19,9 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 }
 
 const iconMap = {
-  github: GithubIcon,
+  github:   GithubIcon,
   linkedin: LinkedinIcon,
-  mail: Mail,
+  mail:     Mail,
 };
 
 function SocialIcon({ link }: { link: SocialLink }) {
@@ -30,7 +30,7 @@ function SocialIcon({ link }: { link: SocialLink }) {
     <a
       href={link.url}
       aria-label={link.platform}
-      className="text-gray-400 hover:text-gray-900 transition-colors"
+      className="text-[var(--text-tertiary)] hover:text-[var(--accent-secondary)] transition-colors"
     >
       <Icon size={18} />
     </a>
@@ -39,10 +39,10 @@ function SocialIcon({ link }: { link: SocialLink }) {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 py-8">
+    <footer className="relative z-10 border-t border-[var(--border-subtle)] py-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-gray-400">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
+        <p className="text-sm text-[var(--text-tertiary)] font-[var(--font-mono)]">
+          © {new Date().getFullYear()} Rodrigo Laconte
         </p>
         <div className="flex items-center gap-4">
           {socialLinks.map((link) => (

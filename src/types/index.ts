@@ -4,11 +4,12 @@ export interface Project {
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
+  highlight?: string;
 }
 
 export interface Skill {
   name: string;
-  category: "Languages" | "Frameworks" | "Tools" | "Databases";
+  category: "Languages" | "Frameworks" | "Tools" | "Databases" | "AI & Workflow";
 }
 
 export interface SocialLink {

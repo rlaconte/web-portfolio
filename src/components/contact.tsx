@@ -1,4 +1,3 @@
-import SectionWrapper from "@/components/section-wrapper";
 import { socialLinks } from "@/data/social-links";
 import { Mail } from "lucide-react";
 
@@ -19,52 +18,55 @@ function LinkedInIcon({ size = 18 }: { size?: number }) {
 }
 
 const iconComponents = {
-  github: GitHubIcon,
+  github:   GitHubIcon,
   linkedin: LinkedInIcon,
-  mail: Mail,
+  mail:     Mail,
 };
 
 export default function Contact() {
   const email = socialLinks.find((l) => l.icon === "mail");
 
   return (
-    <SectionWrapper id="contact" title="Contact">
-      <div className="max-w-xl">
-        <p className="text-gray-500 mb-8 leading-relaxed">
-          I&apos;m open to new opportunities. Whether you have a project in mind,
-          want to collaborate, or just want to say hi — reach out.
+    <section id="contact" className="py-20 md:py-28 scroll-mt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <p className="font-[var(--font-mono)] text-sm text-[var(--text-tertiary)] mb-6 tracking-wide">
+          <span className="text-[var(--accent)]">//</span> contact
         </p>
-
-        {email && (
-          <a
-            href={email.url}
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors mb-8"
-          >
-            <Mail size={16} />
-            Say hello
-          </a>
-        )}
-
-        <div className="flex items-center gap-4">
-          {socialLinks
-            .filter((l) => l.icon !== "mail")
-            .map((link) => {
-              const Icon = iconComponents[link.icon];
-              return (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.platform}
-                  className="text-gray-400 hover:text-gray-900 transition-colors"
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
+        <p className="text-xl text-[var(--text-secondary)] mb-8 font-[var(--font-body)]">
+          Have a systems problem that needs solving?{" "}
+          <span className="text-[var(--text-primary)]">Let&apos;s talk.</span>
+        </p>
+        <div className="flex items-center gap-5">
+          {email && (
+            <a
+              href={email.url}
+              className="inline-flex items-center gap-2 border border-[var(--border-subtle)] text-[var(--text-secondary)] px-5 py-2.5 rounded-lg text-sm font-medium hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors font-[var(--font-body)]"
+            >
+              <Mail size={15} />
+              Say hello
+            </a>
+          )}
+          <div className="flex items-center gap-4">
+            {socialLinks
+              .filter((l) => l.icon !== "mail")
+              .map((link) => {
+                const Icon = iconComponents[link.icon];
+                return (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.platform}
+                    className="text-[var(--text-tertiary)] hover:text-[var(--accent-secondary)] transition-colors"
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
+          </div>
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

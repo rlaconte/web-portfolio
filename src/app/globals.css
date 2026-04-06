@@ -1,9 +1,155 @@
 @import "tailwindcss";
 
-:root {
-  --font-geist-sans: "";
+/* ─── Fonts ─────────────────────────────────────────────── */
+@theme inline {
+  --font-sans: var(--font-body);
 }
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
+/* ─── Light theme ────────────────────────────────────────── */
+:root {
+  --bg-primary: #fafbfc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --border-subtle: #e2e8f0;
+  --border-active: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --accent: #059669;
+  --accent-secondary: #0284c7;
+  --accent-warn: #d97706;
+  --glow: #05966920;
+  --grid-dot: #94a3b8;
+}
+
+/* ─── Dark theme ─────────────────────────────────────────── */
+.dark {
+  --bg-primary: #0a0e17;
+  --bg-surface: #111827;
+  --bg-elevated: #1a2235;
+  --border-subtle: #1e293b;
+  --border-active: #334155;
+  --text-primary: #f0f4f8;
+  --text-secondary: #b8c8d8;
+  --text-tertiary: #637080;
+  --accent: #34d399;
+  --accent-secondary: #38bdf8;
+  --accent-warn: #fbbf24;
+  --glow: #34d39920;
+  --grid-dot: #334155;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Fraunces: optical size for display, WONK off — natural proportions */
+.font-display {
+  font-family: var(--font-heading);
+  font-variation-settings: "opsz" 144, "WONK" 0;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* ─── Background atmosphere ──────────────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.06;
+}
+
+/* ─── Keyframes ──────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--glow); }
+  50%       { box-shadow: 0 0 16px 4px var(--glow); }
+}
+
+@keyframes slideUnderline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ─── Animation utilities ────────────────────────────────── */
+.animate-fade-slide-up {
+  opacity: 0;
+  animation: fadeSlideUp 0.45s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.btn-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ─── Scroll reveal ──────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Nav link hover underline ───────────────────────────── */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease-out;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }

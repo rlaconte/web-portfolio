@@ -2,8 +2,7 @@ export default function NoiseOverlay() {
   return (
     <svg
       aria-hidden="true"
-      className="fixed inset-0 w-full h-full pointer-events-none z-50"
-      style={{ opacity: "var(--noise-opacity)" }}
+      className="fixed inset-0 w-full h-full pointer-events-none z-50 opacity-[var(--noise-opacity)]"
       xmlns="http://www.w3.org/2000/svg"
     >
       <filter id="noise-filter">

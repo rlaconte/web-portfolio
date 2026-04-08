@@ -5,18 +5,9 @@ import { projects } from "@/data/projects";
 export default function Projects() {
   return (
     <SectionWrapper id="projects">
-      <div
-        className="border-t py-20 lg:py-28"
-        style={{ borderColor: "var(--border-subtle)" }}
-      >
+      <div className="border-t border-border-subtle py-20 lg:py-28">
         <Reveal>
-          <span
-            className="text-xs tracking-[0.25em] uppercase block mb-16"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              color: "var(--text-tertiary)",
-            }}
-          >
+          <span className="font-mono text-text-tertiary text-xs tracking-[0.25em] uppercase block mb-16">
             Projects
           </span>
         </Reveal>
@@ -24,47 +15,23 @@ export default function Projects() {
         <div>
           {projects.map((project, i) => (
             <Reveal key={i} delay={i * 60}>
-              <div
-                className="project-row border-t -mx-6 lg:-mx-12 px-6 lg:px-12 py-8 lg:py-10"
-                style={{ borderColor: "var(--border-subtle)" }}
-              >
+              <div className="project-row border-t border-border-subtle -mx-6 lg:-mx-12 px-6 lg:px-12 py-8 lg:py-10">
                 <div className="lg:grid lg:grid-cols-12 lg:gap-8 lg:items-start">
                   {/* Name + Description */}
                   <div className="lg:col-span-8 mb-5 lg:mb-0">
-                    <h3
-                      className="project-title text-2xl lg:text-3xl mb-3"
-                      style={{
-                        fontFamily: "var(--font-instrument-serif), serif",
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <h3 className="font-display text-text-primary project-title text-2xl lg:text-3xl mb-3">
                       {project.name}
                     </h3>
-                    <p
-                      className="text-sm leading-relaxed mb-4"
-                      style={{
-                        fontFamily: "var(--font-ibm-plex-mono), monospace",
-                        color: "var(--text-secondary)",
-                      }}
-                    >
+                    <p className="font-mono text-text-secondary text-sm leading-relaxed mb-4">
                       {project.description}
                     </p>
-                    <span
-                      className="text-xs"
-                      style={{
-                        fontFamily: "var(--font-ibm-plex-mono), monospace",
-                        color: "var(--text-tertiary)",
-                      }}
-                    >
+                    <span className="font-mono text-text-tertiary text-xs">
                       {project.techStack.join(" / ")}
                     </span>
                   </div>
 
                   {/* Links */}
-                  <div
-                    className="lg:col-span-4 flex lg:flex-col lg:items-end gap-5 lg:gap-3"
-                    style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-                  >
+                  <div className="font-mono lg:col-span-4 flex lg:flex-col lg:items-end gap-5 lg:gap-3">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}

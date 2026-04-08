@@ -19,19 +19,23 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    let timer: ReturnType<typeof setTimeout>;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const timer = setTimeout(() => el.classList.add("visible"), delay);
+          timer = setTimeout(() => el.classList.add("visible"), delay);
           observer.unobserve(el);
-          return () => clearTimeout(timer);
         }
       },
       { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
   }, [delay]);
 
   return (

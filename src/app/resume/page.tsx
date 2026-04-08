@@ -11,24 +11,19 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <div
-      className="min-h-screen pt-14"
-      style={{ backgroundColor: "var(--bg-primary)" }}
-    >
+    <div className="bg-bg-primary min-h-screen pt-14">
       <div className="max-w-4xl mx-auto px-6 lg:px-12 py-20">
         {/* Top bar */}
         <div className="flex items-center justify-between mb-16">
           <Link
             href="/"
-            className="link-hover text-xs tracking-widest uppercase"
-            style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
+            className="link-hover font-mono text-xs tracking-widest uppercase"
           >
             ← Back
           </Link>
           <a
             href="/resume.pdf"
-            className="resume-dl-btn inline-flex items-center gap-2 text-xs tracking-widest uppercase px-4 py-2 border"
-            style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
+            className="resume-dl-btn font-mono inline-flex items-center gap-2 text-xs tracking-widest uppercase px-4 py-2 border"
           >
             <Download size={12} strokeWidth={1.5} />
             PDF
@@ -37,35 +32,17 @@ export default function ResumePage() {
 
         {/* Header */}
         <div className="mb-20">
-          <h1
-            className="text-5xl lg:text-6xl mb-3"
-            style={{
-              fontFamily: "var(--font-instrument-serif), serif",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h1 className="font-display text-text-primary text-5xl lg:text-6xl mb-3">
             Rodrigo Laconte
           </h1>
-          <p
-            className="text-xs tracking-[0.25em] uppercase"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              color: "var(--accent)",
-            }}
-          >
+          <p className="font-mono text-accent text-xs tracking-[0.25em] uppercase">
             Senior Backend Engineer
           </p>
         </div>
 
         {/* Experience */}
         <section className="mb-20">
-          <span
-            className="text-xs tracking-[0.25em] uppercase block mb-12"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              color: "var(--text-tertiary)",
-            }}
-          >
+          <span className="font-mono text-text-tertiary text-xs tracking-[0.25em] uppercase block mb-12">
             Experience
           </span>
 
@@ -73,53 +50,24 @@ export default function ResumePage() {
             {experience.map((job) => (
               <div
                 key={`${job.company}-${job.role}`}
-                className="border-t py-10 lg:grid lg:grid-cols-12 lg:gap-8"
-                style={{ borderColor: "var(--border-subtle)" }}
+                className="border-t border-border-subtle py-10 lg:grid lg:grid-cols-12 lg:gap-8"
               >
                 <div className="lg:col-span-3 mb-4 lg:mb-0 lg:pt-0.5">
-                  <span
-                    className="text-xs"
-                    style={{
-                      fontFamily: "var(--font-ibm-plex-mono), monospace",
-                      color: "var(--text-tertiary)",
-                    }}
-                  >
+                  <span className="font-mono text-text-tertiary text-xs">
                     {job.period}
                   </span>
                 </div>
                 <div className="lg:col-span-9">
-                  <h3
-                    className="text-xl lg:text-2xl mb-1"
-                    style={{
-                      fontFamily: "var(--font-instrument-serif), serif",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <h3 className="font-display text-text-primary text-xl lg:text-2xl mb-1">
                     {job.role}
                   </h3>
-                  <span
-                    className="text-xs tracking-widest uppercase block mb-6"
-                    style={{
-                      fontFamily: "var(--font-ibm-plex-mono), monospace",
-                      color: "var(--accent)",
-                    }}
-                  >
+                  <span className="font-mono text-accent text-xs tracking-widest uppercase block mb-6">
                     {job.company}
                   </span>
                   <ul className="space-y-2.5">
                     {job.bullets.map((bullet, i) => (
-                      <li
-                        key={i}
-                        className="text-sm flex gap-3 leading-relaxed"
-                        style={{
-                          fontFamily: "var(--font-ibm-plex-mono), monospace",
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        <span
-                          className="flex-shrink-0 select-none"
-                          style={{ color: "var(--accent)" }}
-                        >
+                      <li key={i} className="font-mono text-text-secondary text-sm flex gap-3 leading-relaxed">
+                        <span className="text-accent flex-shrink-0 select-none">
                           —
                         </span>
                         {bullet}
@@ -134,13 +82,7 @@ export default function ResumePage() {
 
         {/* Education */}
         <section>
-          <span
-            className="text-xs tracking-[0.25em] uppercase block mb-12"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              color: "var(--text-tertiary)",
-            }}
-          >
+          <span className="font-mono text-text-tertiary text-xs tracking-[0.25em] uppercase block mb-12">
             Education
           </span>
 
@@ -148,37 +90,18 @@ export default function ResumePage() {
             {education.map((edu) => (
               <div
                 key={edu.institution}
-                className="border-t py-10 lg:grid lg:grid-cols-12 lg:gap-8"
-                style={{ borderColor: "var(--border-subtle)" }}
+                className="border-t border-border-subtle py-10 lg:grid lg:grid-cols-12 lg:gap-8"
               >
                 <div className="lg:col-span-3 mb-4 lg:mb-0 lg:pt-0.5">
-                  <span
-                    className="text-xs"
-                    style={{
-                      fontFamily: "var(--font-ibm-plex-mono), monospace",
-                      color: "var(--text-tertiary)",
-                    }}
-                  >
+                  <span className="font-mono text-text-tertiary text-xs">
                     {edu.period}
                   </span>
                 </div>
                 <div className="lg:col-span-9">
-                  <h3
-                    className="text-xl lg:text-2xl mb-1"
-                    style={{
-                      fontFamily: "var(--font-instrument-serif), serif",
-                      color: "var(--text-primary)",
-                    }}
-                  >
+                  <h3 className="font-display text-text-primary text-xl lg:text-2xl mb-1">
                     {edu.degree}
                   </h3>
-                  <span
-                    className="text-xs tracking-widest uppercase"
-                    style={{
-                      fontFamily: "var(--font-ibm-plex-mono), monospace",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
+                  <span className="font-mono text-text-secondary text-xs tracking-widest uppercase">
                     {edu.institution}
                   </span>
                 </div>

@@ -1,21 +1,9 @@
 import Link from "next/link";
 
 const socialLinks = [
-  {
-    label: "github",
-    href: "https://github.com/rlaconte",
-    external: true,
-  },
-  {
-    label: "linkedin",
-    href: "https://linkedin.com/in/rlaconte",
-    external: true,
-  },
-  {
-    label: "email",
-    href: "mailto:rodrigo@laconte.dev",
-    external: false,
-  },
+  { label: "github", href: "https://github.com/rlaconte", external: true },
+  { label: "linkedin", href: "https://linkedin.com/in/rlaconte", external: true },
+  { label: "email", href: "mailto:rodrigo@laconte.dev", external: false },
   { label: "résumé", href: "/resume", external: false },
 ];
 
@@ -27,25 +15,13 @@ export default function Hero() {
           {/* Left: Content — cols 1-7 */}
           <div className="lg:col-span-7 flex flex-col justify-center py-28 lg:py-0">
             {/* Pre-title */}
-            <p
-              className="load-fade-up-1 text-xs tracking-[0.3em] uppercase mb-7"
-              style={{
-                fontFamily: "var(--font-ibm-plex-mono), monospace",
-                color: "var(--accent)",
-              }}
-            >
+            <p className="load-fade-up-1 font-mono text-accent text-xs tracking-[0.3em] uppercase mb-7">
               Senior Backend Engineer
             </p>
 
             {/* Name — clip-path reveal */}
             <div className="load-reveal-name overflow-hidden mb-7">
-              <h1
-                className="text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.95] tracking-tight"
-                style={{
-                  fontFamily: "var(--font-instrument-serif), serif",
-                  color: "var(--text-primary)",
-                }}
-              >
+              <h1 className="font-display text-text-primary text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.95] tracking-tight">
                 Rodrigo
                 <br />
                 Laconte
@@ -53,28 +29,17 @@ export default function Hero() {
             </div>
 
             {/* One-liner */}
-            <p
-              className="load-fade-up-2 text-sm leading-relaxed max-w-sm mb-10"
-              style={{
-                fontFamily: "var(--font-ibm-plex-mono), monospace",
-                color: "var(--text-secondary)",
-              }}
-            >
+            <p className="load-fade-up-2 font-mono text-text-secondary text-sm leading-relaxed max-w-sm mb-10">
               I build systems that process money,
               <br />
               move data, and don&apos;t break at 3AM.
             </p>
 
             {/* Social links */}
-            <div
-              className="load-fade-up-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs"
-              style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-            >
+            <div className="load-fade-up-3 font-mono flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
               {socialLinks.map((link, i) => (
                 <span key={link.href} className="flex items-center gap-3">
-                  {i > 0 && (
-                    <span style={{ color: "var(--border)" }}>/</span>
-                  )}
+                  {i > 0 && <span className="text-border">/</span>}
                   {link.external ? (
                     <a
                       href={link.href}
@@ -104,10 +69,7 @@ export default function Hero() {
 
             {/* Accent draw line */}
             <div className="mt-16 hidden lg:block">
-              <div
-                className="load-draw-line h-px w-20"
-                style={{ backgroundColor: "var(--accent)" }}
-              />
+              <div className="load-draw-line bg-accent h-px w-20" />
             </div>
           </div>
 
@@ -117,17 +79,8 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div
-        className="load-fade-up-3 absolute bottom-10 left-6 lg:left-12 flex items-center gap-3"
-        style={{
-          fontFamily: "var(--font-ibm-plex-mono), monospace",
-          color: "var(--text-tertiary)",
-        }}
-      >
-        <div
-          className="w-8 h-px"
-          style={{ backgroundColor: "var(--border)" }}
-        />
+      <div className="load-fade-up-3 font-mono text-text-tertiary absolute bottom-10 left-6 lg:left-12 flex items-center gap-3">
+        <div className="bg-border w-8 h-px" />
         <span className="text-xs tracking-widest uppercase">Scroll</span>
       </div>
     </section>

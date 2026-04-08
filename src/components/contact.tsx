@@ -4,18 +4,9 @@ import Reveal from "./reveal";
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
-      <div
-        className="border-t py-24 lg:py-36"
-        style={{ borderColor: "var(--border-subtle)" }}
-      >
+      <div className="border-t border-border-subtle py-24 lg:py-36">
         <Reveal>
-          <h2
-            className="text-5xl lg:text-7xl mb-8"
-            style={{
-              fontFamily: "var(--font-instrument-serif), serif",
-              color: "var(--text-primary)",
-            }}
-          >
+          <h2 className="font-display text-text-primary text-5xl lg:text-7xl mb-8">
             Let&apos;s talk.
           </h2>
         </Reveal>
@@ -23,12 +14,7 @@ export default function Contact() {
         <Reveal delay={100}>
           <a
             href="mailto:rodrigo@laconte.dev"
-            className="link-hover-accent group text-sm lg:text-base inline-flex items-center gap-2 mb-12 block"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              display: "block",
-              marginBottom: "3rem",
-            }}
+            className="link-hover-accent font-mono group text-sm lg:text-base inline-flex items-center gap-2 mb-12 block"
           >
             rodrigo@laconte.dev{" "}
             <span className="inline-block transition-transform duration-200 group-hover:translate-x-px group-hover:-translate-y-px">
@@ -38,10 +24,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={150}>
-          <div
-            className="flex items-center gap-6 text-xs"
-            style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-          >
+          <div className="font-mono flex items-center gap-6 text-xs">
             <a
               href="https://github.com/rlaconte"
               target="_blank"
@@ -53,7 +36,7 @@ export default function Contact() {
                 ↗
               </span>
             </a>
-            <span style={{ color: "var(--border)" }}>/</span>
+            <span className="text-border">/</span>
             <a
               href="https://linkedin.com/in/rlaconte"
               target="_blank"

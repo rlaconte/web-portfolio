@@ -26,10 +26,7 @@ export default function ThemeToggle() {
       aria-label={`Theme: ${theme}. Click to cycle.`}
     >
       <Icon size={13} strokeWidth={1.5} />
-      <span
-        className="text-xs tracking-widest uppercase hidden sm:inline"
-        style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-      >
+      <span className="font-mono text-xs tracking-widest uppercase hidden sm:inline">
         {theme}
       </span>
     </button>

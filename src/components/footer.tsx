@@ -1,26 +1,11 @@
 export default function Footer() {
   return (
-    <footer
-      className="relative z-10 border-t"
-      style={{ borderColor: "var(--border-subtle)" }}
-    >
+    <footer className="relative z-10 border-t border-border-subtle">
       <div className="max-w-6xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-        <span
-          className="text-xs"
-          style={{
-            fontFamily: "var(--font-ibm-plex-mono), monospace",
-            color: "var(--text-tertiary)",
-          }}
-        >
+        <span className="font-mono text-text-tertiary text-xs">
           {new Date().getFullYear()} Rodrigo Laconte
         </span>
-        <span
-          className="text-xs"
-          style={{
-            fontFamily: "var(--font-ibm-plex-mono), monospace",
-            color: "var(--text-tertiary)",
-          }}
-        >
+        <span className="font-mono text-text-tertiary text-xs">
           Buenos Aires
         </span>
       </div>

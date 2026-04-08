@@ -1,19 +1,31 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import NoiseOverlay from "@/components/noise-overlay";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: "400",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "Your Name — Software Engineer",
+  title: "Rodrigo Laconte — Backend Engineer",
   description:
-    "Portfolio of Your Name, a software engineer focused on building clean, reliable products.",
+    "Senior backend engineer specializing in fintech and data/AI systems. Building systems that process money, move data, and don't break at 3AM.",
 };
+
+// Prevent FOUC by applying theme before first paint
+const themeScript = `(function(){try{var s=localStorage.getItem('theme');var t=s==='light'||s==='dark'?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -21,11 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} scroll-smooth`}>
-      <body className="min-h-screen flex flex-col font-[var(--font-geist-sans)] antialiased bg-white text-gray-900">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      className={`${instrumentSerif.variable} ${ibmPlexMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
+        <ThemeProvider>
+          <NoiseOverlay />
+          <Header />
+          <main className="relative z-10 flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

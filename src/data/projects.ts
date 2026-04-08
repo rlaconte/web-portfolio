@@ -2,33 +2,32 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    name: "Project Alpha",
+    name: "Payment Pipeline",
     description:
-      "A full-stack web application for managing tasks and team collaboration. Features real-time updates and role-based access control.",
-    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+      "Event-driven transaction processing system built for high-throughput fintech workloads. Handles settlement, reconciliation, and audit trails across multiple payment rails.",
+    techStack: ["Go", "Kafka", "PostgreSQL", "Redis", "Kubernetes"],
+    githubUrl: "https://github.com/rlaconte/payment-pipeline",
   },
   {
-    name: "CLI Toolkit",
+    name: "Data Platform",
     description:
-      "A command-line tool that automates common development workflows, including scaffolding, linting, and deployment steps.",
-    techStack: ["Go", "Cobra", "Docker"],
-    githubUrl: "https://github.com",
+      "Internal analytics platform combining real-time streaming with batch processing. Reduced reporting latency from hours to minutes for a team of 50+ analysts.",
+    techStack: ["Python", "Apache Spark", "dbt", "Airflow", "BigQuery"],
+    githubUrl: "https://github.com/rlaconte/data-platform",
   },
   {
     name: "API Gateway",
     description:
-      "A lightweight reverse proxy and API gateway with rate limiting, JWT authentication, and request logging built in.",
-    techStack: ["Node.js", "TypeScript", "Redis", "Express"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+      "Lightweight rate-limiting and auth gateway built as an alternative to cloud-vendor solutions. Handles 10k+ req/s with configurable middleware chains.",
+    techStack: ["Go", "Redis", "Docker", "Prometheus"],
+    githubUrl: "https://github.com/rlaconte/api-gateway",
+    liveUrl: "https://gateway.example.com",
   },
   {
-    name: "Data Pipeline",
+    name: "LLM Evaluation Harness",
     description:
-      "An ETL pipeline that ingests, transforms, and loads data from multiple sources into a centralized data warehouse.",
-    techStack: ["Python", "Apache Airflow", "BigQuery", "dbt"],
-    githubUrl: "https://github.com",
+      "Testing framework for evaluating LLM outputs against domain-specific rubrics. Used to benchmark models for structured financial document extraction.",
+    techStack: ["Python", "Claude API", "SQLite", "FastAPI"],
+    githubUrl: "https://github.com/rlaconte/llm-eval",
   },
 ];

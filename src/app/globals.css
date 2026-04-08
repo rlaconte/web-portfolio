@@ -1,9 +1,295 @@
 @import "tailwindcss";
 
+/* ─── Light Theme: "Broadsheet" ─────────────────────────────────────── */
 :root {
-  --font-geist-sans: "";
+  --bg-primary: #f5f0e8;
+  --bg-secondary: #ece6d9;
+  --bg-elevated: #faf6ef;
+  --text-primary: #1a1a18;
+  --text-secondary: #6b6860;
+  --text-tertiary: #9c978d;
+  --border: #d4cfc4;
+  --border-subtle: #e5e0d5;
+  --accent: #d64030;
+  --accent-hover: #c13525;
+  --accent-muted: rgba(214, 64, 48, 0.07);
+  --noise-opacity: 0.03;
 }
 
+/* ─── Dark Theme: "Terminal" ─────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-primary: #0f0f10;
+  --bg-secondary: #18181b;
+  --bg-elevated: #1e1e22;
+  --text-primary: #e8e6e1;
+  --text-secondary: #8a877f;
+  --text-tertiary: #5c5953;
+  --border: #2a2a2e;
+  --border-subtle: #1f1f23;
+  --accent: #e8523e;
+  --accent-hover: #f06550;
+  --accent-muted: rgba(232, 82, 62, 0.08);
+  --noise-opacity: 0.045;
+}
+
+/* ─── Tailwind Token Mapping ─────────────────────────────────────────── */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --font-display: var(--font-instrument-serif);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ibm-plex-mono, monospace);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Accent radial gradient underlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 15% 0%,
+    var(--accent-muted) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fixed vertical accent line — desktop only */
+@media (min-width: 1024px) {
+  body::after {
+    content: "";
+    position: fixed;
+    left: 44px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--accent);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* ─── Keyframe Animations ────────────────────────────────────────────── */
+@keyframes reveal-clip {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Page Load Animation Classes ────────────────────────────────────── */
+/* Applied once [data-loaded] is set on <body> by ThemeProvider */
+
+[data-loaded] .load-reveal-name {
+  animation: reveal-clip 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+[data-loaded] .load-fade-up-1 {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+[data-loaded] .load-fade-up-2 {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+[data-loaded] .load-fade-up-3 {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+
+[data-loaded] .load-nav-1 {
+  animation: fade-up 0.4s ease 0.05s both;
+}
+
+[data-loaded] .load-nav-2 {
+  animation: fade-up 0.4s ease 0.1s both;
+}
+
+[data-loaded] .load-nav-3 {
+  animation: fade-up 0.4s ease 0.15s both;
+}
+
+[data-loaded] .load-nav-4 {
+  animation: fade-up 0.4s ease 0.2s both;
+}
+
+[data-loaded] .load-nav-5 {
+  animation: fade-up 0.4s ease 0.25s both;
+}
+
+[data-loaded] .load-draw-line {
+  animation: draw-line 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+  transform-origin: left;
+}
+
+/* ─── Scroll Reveal ──────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Reusable Hover Utilities (CSS-var aware, no JS needed) ────────── */
+
+/* Tertiary → accent */
+.link-hover {
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+}
+.link-hover:hover {
+  color: var(--accent);
+}
+
+/* Secondary → primary */
+.link-hover-up {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+.link-hover-up:hover {
+  color: var(--text-primary);
+}
+
+/* Primary → accent */
+.link-hover-primary {
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+.link-hover-primary:hover {
+  color: var(--accent);
+}
+
+/* Accent → accent-hover */
+.link-hover-accent {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+.link-hover-accent:hover {
+  color: var(--accent-hover);
+}
+
+/* Project row hover background */
+.project-row {
+  transition: background-color 0.2s ease;
+}
+.project-row:hover {
+  background-color: var(--accent-muted);
+}
+
+.project-row .project-title {
+  transition: color 0.2s ease;
+}
+.project-row:hover .project-title {
+  color: var(--accent);
+}
+
+/* Resume download button hover */
+.resume-dl-btn {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.resume-dl-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Nav link name */
+.site-name-link {
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+.site-name-link:hover {
+  color: var(--accent);
+}
+
+/* ─── Nav Link Hover Underline ───────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }

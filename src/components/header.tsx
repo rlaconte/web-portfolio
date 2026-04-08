@@ -1,67 +1,132 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Menu } from "lucide-react";
+import ThemeToggle from "./theme-toggle";
 
 const navLinks = [
-  { label: "Projects", href: "/#projects" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Contact", href: "/#contact" },
-  { label: "Resume", href: "/resume" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-semibold text-gray-900 hover:text-gray-600 transition-colors"
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+        style={{
+          backgroundColor: scrolled
+            ? "color-mix(in srgb, var(--bg-primary) 88%, transparent)"
+            : "transparent",
+          backdropFilter: scrolled ? "blur(8px)" : "none",
+        }}
+      >
+        <div
+          className="border-b"
+          style={{ borderColor: "var(--accent)", borderBottomWidth: "1px" }}
         >
-          Your Name
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-6">
-          {navLinks.map((link) => (
+          <div className="max-w-6xl mx-auto px-6 lg:px-12 flex items-center justify-between h-14">
+            {/* Name */}
             <Link
-              key={link.label}
-              href={link.href}
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              href="/"
+              className="load-nav-1 site-name-link text-xs tracking-[0.2em] uppercase"
+              style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
             >
-              {link.label}
+              rodrigo laconte
             </Link>
-          ))}
-        </nav>
 
-        {/* Mobile menu button */}
-        <button
-          className="sm:hidden text-gray-500 hover:text-gray-900 transition-colors"
-          onClick={() => setOpen((prev) => !prev)}
-          aria-label="Toggle menu"
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link link-hover-up load-nav-${i + 2} text-xs tracking-widest uppercase`}
+                  style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <ThemeToggle />
+            </nav>
+
+            {/* Mobile: toggle + burger */}
+            <div className="md:hidden flex items-center gap-4">
+              <ThemeToggle />
+              <button
+                onClick={() => setMenuOpen(true)}
+                className="link-hover"
+                aria-label="Open menu"
+              >
+                <Menu size={18} strokeWidth={1.5} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile full-screen overlay */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col"
+          style={{ backgroundColor: "var(--bg-primary)" }}
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      {/* Mobile nav */}
-      {open && (
-        <nav className="sm:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
+          <div
+            className="flex items-center justify-between h-14 px-6 border-b"
+            style={{ borderColor: "var(--accent)" }}
+          >
             <Link
-              key={link.label}
-              href={link.href}
-              className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
-              onClick={() => setOpen(false)}
+              href="/"
+              className="site-name-link text-xs tracking-[0.2em] uppercase"
+              style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
+              onClick={() => setMenuOpen(false)}
             >
-              {link.label}
+              rodrigo laconte
             </Link>
-          ))}
-        </nav>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="link-hover"
+              aria-label="Close menu"
+            >
+              <X size={18} strokeWidth={1.5} />
+            </button>
+          </div>
+          <nav className="flex flex-col justify-center flex-1 px-6 gap-10">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="link-hover-primary text-5xl transition-colors duration-200"
+                style={{ fontFamily: "var(--font-instrument-serif), serif" }}
+              >
+                {link.label.toLowerCase()}
+              </Link>
+            ))}
+          </nav>
+          <div
+            className="px-6 pb-8 text-xs tracking-widest"
+            style={{
+              fontFamily: "var(--font-ibm-plex-mono), monospace",
+              color: "var(--text-tertiary)",
+            }}
+          >
+            Buenos Aires, Argentina
+          </div>
+        </div>
       )}
-    </header>
+    </>
   );
 }
